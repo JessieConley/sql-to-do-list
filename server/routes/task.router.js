@@ -20,18 +20,23 @@ taskRouter.get('/', (req, res)=> {
       res.send(result.rows);
     })
     .catch(error => {
-      console.log('error getting inventory', error);
+      console.log('error getting task', error);
       res.sendStatus(500);
     });
 })
 
 
 //POST
-taskRouter.post("/", (req, res) => {
+taskRouter.post('/', (req, res) => {
   console.log("in POST:", req.body);
-  let queryString = `INSERT INTO tasks( "task", "notes", "status") Values ('${req.body.task}', '${req.body.notes}', '${req.body.status}')`;
+  let queryString = `INSERT INTO tasks( "task", "notes", "status") VALUES ($1, $2, $3)`;
   //INSERT INTO "tasks"("task", "notes", "status") VALUES ('fold laundry', 'test', 'Not complete');
-  pool.query(queryString).then(results => {
+  pool.query(queryString, [
+      req.body.taskName,
+      req.body.taskNote,
+      req.body.taskStatus
+    ])
+    .then(results => {
       console.log("added task");
       res.sendStatus(201);
     })
@@ -43,9 +48,9 @@ taskRouter.post("/", (req, res) => {
 
 
 //PUT
-taskRouter.put("/:id", (req, res) => {
+taskRouter.put('/:id', (req, res) => {
   console.log("hello from put/id", req.params);
-  queryString = `UPDATE "tasks" SET "status" = 'Complete' WHERE "id" = ${req.params.id}`;
+  queryString = `UPDATE "tasks" SET "id" = 'Complete' WHERE "id" = ${req.params.id}`;
   console.log("complete");
   pool.query(queryString).then(results => {
     res.sendStatus(200);

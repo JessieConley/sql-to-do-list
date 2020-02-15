@@ -9,7 +9,7 @@ function onReady(){
 }
 
 function setupClickListeners(){
-//   $("#viewKoalas").on("click", ".readyButton", putKoalas);
+  $("#viewTasks").on("click", ".completeButton", putTasks);
   $( '#addTaskButton' ).on( 'click', function(){
     console.log( 'in addTaskButton on click' );
     // get user input and put in an object 
@@ -19,7 +19,7 @@ function setupClickListeners(){
       taskNote: $('#notesIn').val(),
       taskStatus: $('#statusIn').val(),
     };
-    // saveKoala( koalaToSend );
+    postTasks(taskToSend);
      
   }); 
 }
@@ -31,10 +31,12 @@ function getTasks(){
     // ajax call to server to get tasks
   $.ajax({
     type: 'GET',
-    url: '/task_list'
+    url: '/task'
   }).then(function(response) {
     console.log('getting back', response);
+
     displayTasks(response);
+
   }).catch(function(error){
     console.log('error in GET', error);
   });
@@ -48,11 +50,10 @@ function postTasks(newTask){
     // ajax call to server to get tasks
 
     $.ajax({
-      type: "POST",
-      url: "/task_list",
+      type: 'POST',
+      url: '/task',
       data: newTask
-    })
-      .then(function(response) {
+    }).then(function(response) {
         console.log("response from server:", response);
         getTasks();
       })
@@ -69,24 +70,24 @@ function displayTasks(response){
   console.log(el);
   el.empty();
   for (let i = 0; i < response.length; i++) {
-   if (
-     response[i].status == "Not Completed" || response[i].status == "not completed"
-   ) {
+  //  if (
+  //    response[i].status == "Not Completed" || response[i].status == "not completed"
+  //  ) {
      el.append(`<tr data-id=${response[i].id}>
-     <td>${response[i].id}</td> <td>${response[i].taskName}</td> <td>${response[i].taskNote}</td> <td>${response[i].taskStatus}</td>
+     <td>${response[i].id}</td> <td>${response[i].task}</td> <td>${response[i].notes}</td> <td>${response[i].status}</td>
      </tr>`);
-   } else if (response[i].transfer == "Completed" || response[i].transfer == "completed") {
-     el.append(`<tr data-id=${response[i].id}>
-    <td>${response[i].id}</td> <td>${response[i].taskName}</td> <td>${response[i].taskNote}</td> <td>${response[i].taskStatus}</td> 
-    <td><button class="completeButton">Completed</button></td>
-    </tr>`);
-   }
+  //  } else if (response[i].transfer == "Completed" || response[i].transfer == "completed") {
+  //    el.append(`<tr data-id=${response[i].id}>
+  //   <td>${response[i].id}</td> <td>${response[i].taskName}</td> <td>${response[i].taskNote}</td> <td>${response[i].taskStatus}</td> 
+  //   <td><button class="completeButton">Completed</button></td>
+  //   </tr>`);
+  //  }
   }//end for
 }//end displayTasks
 
 function putTasks() {
   console.log("in putTasks");
-  let targetId = $(this).parent().parent().data("id");
+  let targetId = $(this).parent().data("id");
   console.log(targetId);
   //ajax PUT request
   $.ajax({
