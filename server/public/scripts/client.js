@@ -14,10 +14,9 @@ function setupClickListeners(){
     console.log( 'in addTaskButton on click' );
     // get user input and put in an object 
     let taskToSend = {
-
-      taskName: $('#taskIn').val(),
-      taskNote: $('#notesIn').val(),
-      taskStatus: $('#statusIn').val(),
+      taskName: $("#taskIn").val(),
+      taskNote: $("#notesIn").val(),
+      taskStatus: $("#status").val()
     };
     postTasks(taskToSend);
      
@@ -67,37 +66,42 @@ function postTasks(newTask){
 function displayTasks(response){
   console.log('in displayTasks', response);
   let el = $("#viewTasks");
-  console.log(el);
+  // console.log(el);
   el.empty();
-  for (let i = 0; i < response.length; i++) {
-  //  if (
-  //    response[i].status == "Not Completed" || response[i].status == "not completed"
-  //  ) {
-     el.append(`<tr data-id=${response[i].id}>
-     <td>${response[i].id}</td> <td>${response[i].task}</td> <td>${response[i].notes}</td> <td>${response[i].status}</td>
+  for(let i = 0; i < response.length; i++) {
+    if (response[i].status == "Not Complete") {
+     el.append(`<tr data-id=${response[i].id} class="red">
+     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td>${response[i].status}</td>
+     <td><button class="completeButton">Completed</button></td>
+     <td><button class="deleteButton">Delete</button></td>
      </tr>`);
-  //  } else if (response[i].transfer == "Completed" || response[i].transfer == "completed") {
-  //    el.append(`<tr data-id=${response[i].id}>
-  //   <td>${response[i].id}</td> <td>${response[i].taskName}</td> <td>${response[i].taskNote}</td> <td>${response[i].taskStatus}</td> 
-  //   <td><button class="completeButton">Completed</button></td>
-  //   </tr>`);
-  //  }
+    ;
+  } 
+  else if (response[i].status == "Complete") {
+      el.append(`<tr data-id=${response[i].id} class="green">
+     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td>${response[i].status}</td>
+     <td><button class="completeButton">Completed</button></td>
+     <td><button class="deleteButton">Delete</button></td>
+     </tr>`);
+    
   }//end for
+}
 }//end displayTasks
 
-function putTasks() {
+function putTasks(){
   console.log("in putTasks");
-  let targetId = $(this).parent().data("id");
+  let targetId = $(this).parent().parent().data('id');
   console.log(targetId);
+  
   //ajax PUT request
   $.ajax({
     type: "PUT",
-    url: `/task_list/${targetId}`,
+    url: `/task/${targetId}`,
     data: {
-      taskCompleted: "complete"
+      status: 'complete'
     }
   })
-    .then(function(response) {
+  .then(function(response) {
       console.log("back from PUT with:", response);
       getTasks();
     })
@@ -106,3 +110,4 @@ function putTasks() {
       alert("not working");
     });
 }
+

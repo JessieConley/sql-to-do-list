@@ -14,7 +14,7 @@ const pool = new pg.Pool({
 
 // GET
 taskRouter.get('/', (req, res)=> {
-    let queryText = 'SELECT * FROM "tasks"';
+    let queryText = 'SELECT * FROM "tasks" ORDER BY "id" ASC';
     pool.query(queryText).then(result => {
       // Sends back the results in an object
       res.send(result.rows);
@@ -50,7 +50,7 @@ taskRouter.post('/', (req, res) => {
 //PUT
 taskRouter.put('/:id', (req, res) => {
   console.log("hello from put/id", req.params);
-  queryString = `UPDATE "tasks" SET "id" = 'Complete' WHERE "id" = ${req.params.id}`;
+  queryString = `UPDATE "tasks" SET "status" = 'Complete' WHERE "id" = ${req.params.id}`;
   console.log("complete");
   pool.query(queryString).then(results => {
     res.sendStatus(200);

@@ -20,7 +20,10 @@
       <h2>Add Task</h2>
       <input type="text" id="taskIn" value="" placeholder="task">
       <input type="text" id="notesIn" value="" placeholder="notes">
-      <input type="text" id="statusIn" value="" placeholder="status"> 
+      <select id="status">
+        <option>Not Complete</option>
+        <option>Complete</option>
+      </select> 
       <button type="button" id="addTaskButton">Add Task</button>
     </section>
     <section>
@@ -28,7 +31,6 @@
       <table> 
         <thead>
           <tr>
-            <th>Id</th>
             <th>Task</th>
             <th>Notes</th>
             <th>Status</th>
