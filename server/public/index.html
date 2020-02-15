@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="vendors/jquery-3.4.1.min 2.js" charset="utf-8"></script>
+    <script src="scripts/client.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="styles/styles.css">
+    <title>Weekend SQL To Do List</title>
+</head>
+<body>
+    <!-- <h1>Weekend SQL To Do List</h1> -->
+
+    <header>
+      
+      <h1>To Do List</h1>
+
+    </header>
+    <section id="addTask">
+      <h2>Add Task</h2>
+      <input type="text" id="taskIn" value="" placeholder="task">
+      <input type="text" id="notesIn" value="" placeholder="notes">
+      <input type="text" id="statusIn" value="" placeholder="status"> 
+      <button type="button" id="addTaskButton">Add Task</button>
+    </section>
+    <section>
+      <h2>All Tasks</h2>
+      <table> 
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Task</th>
+            <th>Notes</th>
+            <th>Status</th>
+          </tr>
+        </thead> 
+        <tbody id="viewTasks">
+        </tbody>
+      </table> 
+    </section>
+</body>
+</html>
