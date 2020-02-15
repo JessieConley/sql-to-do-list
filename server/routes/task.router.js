@@ -58,6 +58,13 @@ taskRouter.put('/:id', (req, res) => {
 });
 
 //DELETE
-
+taskRouter.delete("/:id", (req, res) => {
+  console.log("hello from put/id", req.params);
+  queryString = `DELETE FROM "tasks" WHERE "id" = ${req.params.id}`;
+  console.log("delete");
+  pool.query(queryString).then(results => {
+    res.sendStatus(200);
+  });
+});
 
 module.exports = taskRouter;

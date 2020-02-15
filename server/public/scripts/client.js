@@ -9,6 +9,7 @@ function onReady(){
 }
 
 function setupClickListeners(){
+  $("#viewTasks").on("click", ".deleteButton", deleteTasks);
   $("#viewTasks").on("click", ".completeButton", putTasks);
   $( '#addTaskButton' ).on( 'click', function(){
     console.log( 'in addTaskButton on click' );
@@ -70,16 +71,16 @@ function displayTasks(response){
   el.empty();
   for(let i = 0; i < response.length; i++) {
     if (response[i].status == "Not Complete") {
-     el.append(`<tr data-id=${response[i].id} class="red">
-     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td>${response[i].status}</td>
+     el.append(`<tr data-id=${response[i].id}>
+     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td class="red">${response[i].status}</td>
      <td><button class="completeButton">Completed</button></td>
      <td><button class="deleteButton">Delete</button></td>
      </tr>`);
     ;
   } 
   else if (response[i].status == "Complete") {
-      el.append(`<tr data-id=${response[i].id} class="green">
-     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td>${response[i].status}</td>
+      el.append(`<tr data-id=${response[i].id}>
+     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td class="green">${response[i].status}</td>
      <td><button class="completeButton">Completed</button></td>
      <td><button class="deleteButton">Delete</button></td>
      </tr>`);
@@ -102,6 +103,32 @@ function putTasks(){
     }
   })
   .then(function(response) {
+      console.log("back from PUT with:", response);
+      getTasks();
+    })
+    .catch(function(err) {
+      console.log(err);
+      alert("not working");
+    });
+}
+
+function deleteTasks() {
+  console.log("in putTasks");
+  let targetId = $(this)
+    .parent()
+    .parent()
+    .data("id");
+  console.log(targetId);
+
+  //ajax PUT request
+  $.ajax({
+    type: "DELETE",
+    url: `/task/${targetId}`,
+    data: {
+      status: "complete"
+    }
+  })
+    .then(function(response) {
       console.log("back from PUT with:", response);
       getTasks();
     })
