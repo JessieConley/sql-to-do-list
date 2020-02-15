@@ -84,3 +84,24 @@ function displayTasks(response){
   }//end for
 }//end displayTasks
 
+function putTasks() {
+  console.log("in putTasks");
+  let targetId = $(this).parent().parent().data("id");
+  console.log(targetId);
+  //ajax PUT request
+  $.ajax({
+    type: "PUT",
+    url: `/task_list/${targetId}`,
+    data: {
+      taskCompleted: "complete"
+    }
+  })
+    .then(function(response) {
+      console.log("back from PUT with:", response);
+      getTasks();
+    })
+    .catch(function(err) {
+      console.log(err);
+      alert("not working");
+    });
+}

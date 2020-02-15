@@ -32,7 +32,7 @@ taskRouter.post("/", (req, res) => {
   let queryString = `INSERT INTO tasks( "task", "notes", "status") Values ('${req.body.task}', '${req.body.notes}', '${req.body.status}')`;
   //INSERT INTO "tasks"("task", "notes", "status") VALUES ('fold laundry', 'test', 'Not complete');
   pool.query(queryString).then(results => {
-      console.log("added koala");
+      console.log("added task");
       res.sendStatus(201);
     })
     .catch(err => {
