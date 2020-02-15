@@ -43,7 +43,14 @@ taskRouter.post("/", (req, res) => {
 
 
 //PUT
-
+taskRouter.put("/:id", (req, res) => {
+  console.log("hello from put/id", req.params);
+  queryString = `UPDATE "tasks" SET "status" = 'Complete' WHERE "id" = ${req.params.id}`;
+  console.log("complete");
+  pool.query(queryString).then(results => {
+    res.sendStatus(200);
+  });
+});
 
 //DELETE
 
