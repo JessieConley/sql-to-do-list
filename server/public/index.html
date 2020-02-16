@@ -16,29 +16,41 @@
       <h1>To Do List</h1>
 
     </header>
+    <div class="taskInputs"></div>
     <section id="addTask">
       <h2>Add Task</h2>
+
       <input type="text" id="taskIn" value="" placeholder="task">
       <input type="text" id="notesIn" value="" placeholder="notes">
+      
       <select id="status">
         <option>Not Complete</option>
         <option>Complete</option>
       </select> 
+
       <button type="button" id="addTaskButton">Add Task</button>
     </section>
+    </div>
+    <div class="tableHead">
     <section>
       <h2>All Tasks</h2>
+    </div>
+    <div class="tableBody">
       <table> 
         <thead>
           <tr>
             <th>Task</th>
             <th>Notes</th>
             <th>Status</th>
+            <th>Complete</th>
+            <th>Delete</th>
           </tr>
         </thead> 
         <tbody id="viewTasks">
         </tbody>
       </table> 
+      </div>
     </section>
+    </div>
 </body>
 </html>

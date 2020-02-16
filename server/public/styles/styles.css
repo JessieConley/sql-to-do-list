@@ -1,11 +1,56 @@
-body{
-    background-color: burlywood;
+html{
+    
+    background-image: url('/..../../../../images/background.png');
+    background-position: center center;
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-attachment: fixed; 
+    
 }
 
+
+header{
+  background-color: ivory;
+  opacity: .5;
+  font-family: sans-serif;
+  margin-bottom: 60px;
+  
+  text-align  
+}
+
+/* body{
+  margin: 0;
+  padding: 0;
+} */
+
+.taskInputs{
+    background-color: ivory;
+    opacity: .5;
+    font-family: sans-serif;
+}
+
+table {
+border-collapse:collapse; 
+background-color: tan;
+
+}
+
+tr {
+    background-color: navajowhite;
+}
+
+th, td {
+    border: 1px solid black;
+    text-align: center;
+    width: 25%;
+    top: 20px;  
+    left: 20px;
+    
+}
 .red{
-    background-color: red;
+    background-color: rgba(255, 102, 99, 1);;
 }
 
 .green{
-    background-color: green;
+    background-color: rgba(224, 255, 79, 1);
 }
