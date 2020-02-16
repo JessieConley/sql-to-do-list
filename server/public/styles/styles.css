@@ -10,24 +10,18 @@ html{
 
 
 header{
-  background-color: ivory;
-  opacity: .5;
+  /* background-color: ivory;
+  opacity: .5; */
   font-family: sans-serif;
   margin-bottom: 60px;
   text-align: center;  
 }
 
-/* body{
+ /* body{
   margin: 0;
   padding: 0;
-}   */
+}    */
 
-
-.taskInputs{
-    background-color: ivory;
-    opacity: .5;
-    font-family: sans-serif;
-}
 
 table {
 border-collapse:collapse; 
@@ -49,9 +43,9 @@ th, td {
     
 }
 .red{
-    background-color: rgba(255, 102, 99, 1);;
+    background-color:  red;
 }
 
 .green{
-    background-color: rgba(224, 255, 79, 1);
+    background-color:green;
 }
