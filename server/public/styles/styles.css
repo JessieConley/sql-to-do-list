@@ -1,3 +1,4 @@
+/* **BACKGROUND IMAGE** */
 html{
     
     background-image: url('/..../../../../images/background_2.png');
@@ -17,12 +18,43 @@ header{
   text-align: center;  
 }
 
- /* body{
+ body{
   margin: 0;
-  padding: 0;
-}    */
+}  
 
+main {
+  margin: auto;
+  width: 80%;
+}
 
+h1{
+ background-color: #FFD4CA;
+  margin: 0;
+  margin-bottom: 1em;
+  padding: 0.25em;
+  text-align: center;
+  text-shadow: 1px 1px 3px #333;
+  width: 100%;
+  font-family: sans-serif;
+
+}
+
+h2{
+    color: #62A87C;
+    font-family: sans-serif;
+}
+
+.addTaskSection {
+  background-color: #FFD4CA;
+  opacity: .85;
+  border-radius: 0.25em;
+  box-shadow: 3px 4px 5px #D1B7A5;
+  margin-bottom: 2em;
+  padding: 1.5em;
+  font-family: sans-serif;
+}
+/* 
+**TABLE** */
 table {
 border-collapse:collapse; 
 background-color: tan;
