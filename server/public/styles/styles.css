@@ -38,15 +38,6 @@ h1{
 
 }
 
-h3{
-     color: #62A87C;
-    text-shadow: 1px 1px 3px #333;
-    font-family: sans-serif;
-    font-weight: bolder;
-    text-align: center;
-}
-
-/* **FORM** */
 h2{
     color: #62A87C;
     text-shadow: .5px .5px .5px #333;
@@ -54,7 +45,7 @@ h2{
     font-weight: bolder;    
 }
 
-
+/* **FORM** */
 .addTaskSection {
   background-color: #A05C7B;
   opacity: .85;
@@ -69,7 +60,7 @@ h2{
 
 button {
   border-radius: 0.5em;
-  box-shadow: 1px 2px 3px #D1B7A5;
+  box-shadow: 1px 1px 1px #D1B7A5;
   margin: 5px 5px;
   padding: 0.5em;
   color: black;
@@ -79,7 +70,6 @@ button {
 table {
 border-collapse:collapse; 
 box-shadow: 3px 4px 5px #D1B7A5;
-
 background-color:#F2E5D7;
 width: 100%;
 object-position: center;

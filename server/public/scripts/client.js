@@ -6,7 +6,7 @@ function onReady(){
     //establish click listeners
     setupClickListeners();
     getTasks();
-}
+} //end onReady
 
 function setupClickListeners(){
   $("#viewTasks").on("click", ".deleteButton", deleteTasks);
@@ -22,33 +22,30 @@ function setupClickListeners(){
     postTasks(taskToSend);
      
   }); 
-}
+} //end setupClickListeners
 
 //function getTasks
 
 function getTasks(){
-    console.log ('in getTasks');
-    // ajax call to server to get tasks
+  console.log ('in getTasks');
+  // ajax GET request
   $.ajax({
     type: 'GET',
     url: '/task'
   }).then(function(response) {
     console.log('getting back', response);
-
     displayTasks(response);
-
   }).catch(function(error){
     console.log('error in GET', error);
   });
   
 } // end getTasks
 
-//function to POST tasks
+
 
 function postTasks(newTask){
     console.log("in postTasks", newTask);
-    // ajax call to server to get tasks
-
+    // ajax POST request
     $.ajax({
       type: 'POST',
       url: '/task',
@@ -61,7 +58,7 @@ function postTasks(newTask){
         console.log("error posting", err);
       });
   
-}
+} //end postTasks
 
 //function to display tasks:
 function displayTasks(response){
@@ -79,21 +76,21 @@ function displayTasks(response){
     ;
   } 
   else if (response[i].status == "Complete") {
-      el.append(`<tr data-id=${response[i].id}>
-     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td class="green">${response[i].status}</td>
+      el.append(`<tr data-id=${response[i].id}  class="green">
+     <td>${response[i].task}</td> <td>${response[i].notes}</td> <td>${response[i].status}</td>
      <td><button class="completeButton">Completed</button></td>
      <td><button class="deleteButton">Delete</button></td>
      </tr>`);
     
-  }//end for
-}
+  } //end conditional
+} //end for loop
 }//end displayTasks
+
 
 function putTasks(){
   console.log("in putTasks");
   let targetId = $(this).parent().parent().data('id');
   console.log(targetId);
-  
   //ajax PUT request
   $.ajax({
     type: "PUT",
@@ -110,7 +107,7 @@ function putTasks(){
       console.log(err);
       alert("not working");
     });
-}
+} //end putTasks
 
 function deleteTasks() {
   console.log("in putTasks");
@@ -119,15 +116,14 @@ function deleteTasks() {
     .parent()
     .data("id");
   console.log(targetId);
-
-  //ajax PUT request
+  //ajax DELETE request
   $.ajax({
     type: "DELETE",
     url: `/task/${targetId}`,
     data: {
       status: "complete"
     }
-  })
+  }) //end ajax
     .then(function(response) {
       console.log("back from PUT with:", response);
       getTasks();
@@ -136,5 +132,5 @@ function deleteTasks() {
       console.log(err);
       alert("not working");
     });
-}
+} //end deleteTasks
 

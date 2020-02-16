@@ -8,4 +8,5 @@ CREATE TABLE "tasks"
 
 SELECT * FROM "tasks";
 
-INSERT INTO "tasks"("task", "notes", "status") VALUES ('fold laundry', 'test', 'Not complete');
+-- Testing server side:
+-- INSERT INTO "tasks"("task", "notes", "status") VALUES ('fold laundry', 'test', 'Not complete');

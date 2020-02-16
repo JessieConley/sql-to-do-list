@@ -30,7 +30,6 @@ taskRouter.get('/', (req, res)=> {
 taskRouter.post('/', (req, res) => {
   console.log("in POST:", req.body);
   let queryString = `INSERT INTO tasks( "task", "notes", "status") VALUES ($1, $2, $3)`;
-  //INSERT INTO "tasks"("task", "notes", "status") VALUES ('fold laundry', 'test', 'Not complete');
   pool.query(queryString, [
       req.body.taskName,
       req.body.taskNote,
